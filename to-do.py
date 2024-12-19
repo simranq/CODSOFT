@@ -18,9 +18,9 @@ def add_task():
     else:
         messagebox.showwarning(title="Warning",message="You must enter a task first!")
 
-# def update_task():
-#     selected_task_index = tasks_list.curselection()[0]
-#     new_task = task_entry.get()
+def update_task():
+    delete_task()
+    add_task()
 
 
 def delete_task():
@@ -49,22 +49,27 @@ def load_tasks():
 
 root = Tk()
 
+#Background Image
 bg_image = Image.open("bg-img.jpeg")
 bg_image = ImageTk.PhotoImage(bg_image)
 
 bg_label = Label(root,image=bg_image)
 bg_label.place(x=-50, y=-50)
 
+#Title
 root.title("To-Do List")
 root.config(padx=30, pady=50, bg=BG_COLOR)
 root.minsize(height=300,width=400)
 
+#Label
 label1 = Label(text="Enter task:",font="Georgia", fg="#604983")
 label1.grid(row=0, columnspan=5)
 
+#User-friendly task entry
 task_entry = Entry(width=75)
 task_entry.grid(row=1,columnspan=5)
 
+#Frame, List and scrollbar consisting of tasks
 frame_for_tasks = Frame(root)
 frame_for_tasks.grid(row=3,columnspan=4)
 
@@ -77,15 +82,19 @@ tasks_scrollbar.grid(row=3, column=5, sticky='ns')
 tasks_list.config(yscrollcommand=tasks_scrollbar.set)
 tasks_scrollbar.config(command=tasks_list.yview)
 
+#Buttons
+
 add_button = Button(highlightthickness=0, width=28, text="Add Task", bg=BUTTON_COLOR, command=add_task)
-add_button.grid(row=2, column=1)
+add_button.grid(row=2, column=2)
 
 delete_button = Button(highlightthickness=0, width=28, text="Delete Task", bg=BUTTON_COLOR, command=delete_task)
-delete_button.grid(row=2, column=2)
+delete_button.grid(row=2, column=3)
 
 save_task_button = Button(highlightthickness=0, width=28, text="Save Task", bg =BUTTON_COLOR, command=save_tasks)
-save_task_button.grid(row=4, column=2)
+save_task_button.grid(row=5, column=2)
 
+update_task_button = Button(highlightthickness=0, width=28, text="Update Task", bg=BUTTON_COLOR, command=update_task)
+update_task_button.grid(row=5, column=3)
 load_tasks()
 
 root.mainloop()
