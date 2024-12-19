@@ -1,3 +1,7 @@
-first dummy
-shopping
-task 1
+wakeup
+breakfast
+walk
+attend lectures
+code
+sleep
+Eat healthy
